@@ -9,10 +9,11 @@ import 'models/joke_dto.dart';
 class DataSource {
   Future<JokeDto> getJoke() async {
     final categories = Category.values
-        .where((category) => Settings.getValue<bool>(category.key) ?? false)
+        .where((category) =>
+            Settings.getValue<bool>(category.key, defaultValue: false)!)
         .map((category) => category.name);
     final blacklistFlags = BlacklistFlag.values
-        .where((flag) => Settings.getValue<bool>(flag.key) ?? false)
+        .where((flag) => Settings.getValue<bool>(flag.key, defaultValue: true)!)
         .map((flag) => flag.name.toLowerCase());
     final url = Uri(
       scheme: 'https',
