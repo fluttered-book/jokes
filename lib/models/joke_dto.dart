@@ -1,4 +1,9 @@
-class JokeDto {
+import 'package:dart_mappable/dart_mappable.dart';
+
+part 'joke_dto.mapper.dart';
+
+@MappableClass()
+class JokeDto with JokeDtoMappable {
   bool? error;
   String? category;
   String? type;
@@ -21,39 +26,10 @@ class JokeDto {
       this.id,
       this.safe,
       this.lang});
-
-  JokeDto.fromJson(Map<String, dynamic> json) {
-    error = json["error"];
-    category = json["category"];
-    type = json["type"];
-    setup = json["setup"];
-    delivery = json["delivery"];
-    joke = json["joke"];
-    flags = json["flags"] == null ? null : Flags.fromJson(json["flags"]);
-    id = json["id"];
-    safe = json["safe"];
-    lang = json["lang"];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["error"] = error;
-    _data["category"] = category;
-    _data["type"] = type;
-    _data["setup"] = setup;
-    _data["delivery"] = delivery;
-    _data["joke"] = joke;
-    if (flags != null) {
-      _data["flags"] = flags?.toJson();
-    }
-    _data["id"] = id;
-    _data["safe"] = safe;
-    _data["lang"] = lang;
-    return _data;
-  }
 }
 
-class Flags {
+@MappableClass()
+class Flags with FlagsMappable {
   bool? nsfw;
   bool? religious;
   bool? political;
@@ -68,24 +44,4 @@ class Flags {
       this.racist,
       this.sexist,
       this.explicit});
-
-  Flags.fromJson(Map<String, dynamic> json) {
-    nsfw = json["nsfw"];
-    religious = json["religious"];
-    political = json["political"];
-    racist = json["racist"];
-    sexist = json["sexist"];
-    explicit = json["explicit"];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["nsfw"] = nsfw;
-    _data["religious"] = religious;
-    _data["political"] = political;
-    _data["racist"] = racist;
-    _data["sexist"] = sexist;
-    _data["explicit"] = explicit;
-    return _data;
-  }
 }

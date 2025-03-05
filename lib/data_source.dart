@@ -27,7 +27,6 @@ class DataSource {
     );
     if (kDebugMode) debugPrint(url.toString());
     final response = await http.get(url);
-    final map = json.decode(response.body);
-    return JokeDto.fromJson(map);
+    return JokeDtoMapper.fromJson(response.body);
   }
 }
