@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jokes/core/joke_cubit.dart';
-import 'package:jokes/core/joke_state.dart';
 import 'package:jokes/data_source.dart';
 
-import 'joke_dto.dart';
+import 'pages/jokes_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,56 +40,6 @@ class MyApp extends StatelessWidget {
         ),
         home: const JokesPage(),
       ),
-    );
-  }
-}
-
-class JokesPage extends StatelessWidget {
-  const JokesPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Jokes")),
-      body: BlocBuilder<JokeCubit, JokeState>(
-        builder: (context, state) {
-          return Column(
-            children: [
-              switch (state) {
-                JokeInitial() => Text("Wan't to hear a joke?"),
-                JokeLoading() => CircularProgressIndicator(),
-                JokeLoaded() => JokeWidget(state.joke),
-                JokeError() => Text(
-                    state.message,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                  ),
-              },
-              TextButton(
-                onPressed: () => context.read<JokeCubit>().loadNewJoke(),
-                child: Text(state is JokeInitial ? "Yes" : "Another"),
-              ),
-            ],
-          );
-        },
-      ),
-    );
-  }
-}
-
-class JokeWidget extends StatelessWidget {
-  final JokeDto joke;
-  const JokeWidget(this.joke, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        if (joke.joke != null) Text(joke.joke!),
-        if (joke.setup != null) Text(joke.setup!),
-        if (joke.delivery != null) Text(joke.delivery!)
-      ],
     );
   }
 }
