@@ -15,7 +15,8 @@ class SettingsPage extends StatelessWidget {
       ]),
       SettingsGroup(title: "Blacklist", children: [
         for (final flag in BlacklistFlag.values)
-          SwitchSettingsTile(title: flag.name, settingKey: flag.key),
+          SwitchSettingsTile(
+              title: flag.name, settingKey: flag.key, defaultValue: true),
       ]),
     ]);
   }
