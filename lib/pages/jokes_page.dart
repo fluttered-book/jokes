@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jokes/pages/settings_page.dart';
 
 import '../core/joke_cubit.dart';
 import '../core/joke_state.dart';
@@ -11,7 +12,20 @@ class JokesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Jokes")),
+      appBar: AppBar(
+        title: const Text("Jokes"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => SettingsPage(),
+                  ),
+                );
+              },
+              icon: Icon(Icons.settings))
+        ],
+      ),
       body: BlocBuilder<JokeCubit, JokeState>(
         builder: (context, state) {
           return Column(

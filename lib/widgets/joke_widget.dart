@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jokes/widgets/text_bubble.dart';
 
-import '../joke_dto.dart';
+import '../models/joke_dto.dart';
 
 class JokeWidget extends StatelessWidget {
   final JokeDto joke;

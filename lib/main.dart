@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:jokes/core/joke_cubit.dart';
 import 'package:jokes/data_source.dart';
 
 import 'pages/jokes_page.dart';
 
 void main() {
+  Settings.init();
   runApp(const MyApp());
 }
 

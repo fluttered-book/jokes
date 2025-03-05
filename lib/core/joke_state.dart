@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:jokes/joke_dto.dart';
+
+import '../models/joke_dto.dart';
 
 @immutable
 sealed class JokeState {}
