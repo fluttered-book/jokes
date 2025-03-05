@@ -14,23 +14,24 @@ class JokesPage extends StatelessWidget {
       appBar: AppBar(title: const Text("Jokes")),
       body: BlocBuilder<JokeCubit, JokeState>(
         builder: (context, state) {
-          return Center(
-            child: Column(
-              children: [
-                Expanded(
-                  child: switch (state) {
-                    JokeInitial() => Text("Wan't to hear a joke?"),
-                    JokeLoading() => Center(child: CircularProgressIndicator()),
-                    JokeLoaded() => JokeWidget(state.joke),
-                    JokeError() => Text(
-                        state.message,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.error,
-                        ),
+          return Column(
+            children: [
+              Expanded(
+                child: switch (state) {
+                  JokeInitial() => Text("Want to hear a joke?",
+                      style: Theme.of(context).textTheme.headlineMedium),
+                  JokeLoading() => Center(child: CircularProgressIndicator()),
+                  JokeLoaded() => JokeWidget(state.joke),
+                  JokeError() => Text(
+                      state.message,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.error,
                       ),
-                  },
-                ),
-                Padding(
+                    ),
+                },
+              ),
+              Center(
+                child: Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: ElevatedButton(
                     onPressed: () => context.read<JokeCubit>().loadNewJoke(),
@@ -40,8 +41,8 @@ class JokesPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),

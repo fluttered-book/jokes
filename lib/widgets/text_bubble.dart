@@ -6,14 +6,15 @@ class TextBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fontSize = Theme.of(context).textTheme.headlineSmall?.fontSize;
     return PhysicalModel(
       color: Colors.purple,
-      elevation: 20,
+      elevation: 10,
       borderRadius: BorderRadius.circular(20),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Text(text,
-            style: const TextStyle(fontSize: 24, color: Colors.white)),
+            style: TextStyle(fontSize: fontSize, color: Colors.white)),
       ),
     );
   }
