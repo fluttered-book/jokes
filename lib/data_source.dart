@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart' show kDebugMode, debugPrint;
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:http/http.dart' as http;
 import 'package:jokes/models/settings.dart';
@@ -24,9 +25,7 @@ class DataSource {
           ? "blacklistFlags=${blacklistFlags.join(",")}"
           : null,
     );
-    print(url);
-    //const url =
-    //    "https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit";
+    if (kDebugMode) debugPrint(url.toString());
     final response = await http.get(url);
     final map = json.decode(response.body);
     return JokeDto.fromJson(map);
